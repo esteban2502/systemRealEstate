@@ -43,7 +43,7 @@ public class PropertyController {
         if(property.isPresent()){
             PropertyDTO propertyDTO = new PropertyDTO(
               property.get().getId(), property.get().getName(),
-              property.get().getName(),property.get().getPrice(),
+              property.get().getDescription(),property.get().getPrice(),
               property.get().getImages(), property.get().getLatitude(),
               property.get().getLength()
             );
@@ -88,5 +88,7 @@ public class PropertyController {
     public ResponseEntity<?> deleteById(@PathVariable Long id){
         service.deleteById(id);
         return ResponseEntity.ok().build();
+
+        
     }
 }
