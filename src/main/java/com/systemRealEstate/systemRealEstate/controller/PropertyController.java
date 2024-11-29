@@ -3,13 +3,13 @@ package com.systemRealEstate.systemRealEstate.controller;
 import com.systemRealEstate.systemRealEstate.controller.DTO.PropertyDTO;
 import com.systemRealEstate.systemRealEstate.model.Property;
 import com.systemRealEstate.systemRealEstate.service.IPropertyService;
-import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @RestController
@@ -37,6 +37,39 @@ public class PropertyController {
 
     }
 
+    @GetMapping("/property/{id}")
+    public ResponseEntity<?> getById(@PathVariable Long id){
+        Optional<Property> property = service.getById(id);
+        if(property.isPresent()){
+            PropertyDTO propertyDTO = new PropertyDTO(
+              property.get().getId(), property.get().getName(),
+              property.get().getName(),property.get().getPrice(),
+              property.get().getImages(), property.get().getLatitude(),
+              property.get().getLength()
+            );
+
+            return ResponseEntity.ok(propertyDTO);
+        }
+
+        return ResponseEntity.notFound().build();
+
+    }
+
+    @PutMapping("/property/{id}")
+    public ResponseEntity<?> updateProperty(@PathVariable Long id, @RequestBody PropertyDTO propertyDTO){
+
+        Property property = new Property(
+                propertyDTO.getId(),propertyDTO.getName(),propertyDTO.getDescription(),
+                propertyDTO.getPrice(),propertyDTO.getImages(),propertyDTO.getLatitude(),
+                propertyDTO.getLength()
+        );
+
+        service.updateProperty(id,property);
+
+        return ResponseEntity.ok().build();
+
+    }
+
 
     @PostMapping("/property")
     public ResponseEntity<?> addProperty(@RequestBody PropertyDTO propertyDTO){
@@ -48,6 +81,12 @@ public class PropertyController {
 
         service.addPropery(property);
 
-        return ResponseEntity.created(URI.create("/api/property"+property.getId())).build();
+        return ResponseEntity.created(URI.create("/api/property/"+property.getId())).build();
+    }
+
+    @DeleteMapping("property/{id}")
+    public ResponseEntity<?> deleteById(@PathVariable Long id){
+        service.deleteById(id);
+        return ResponseEntity.ok().build();
     }
 }

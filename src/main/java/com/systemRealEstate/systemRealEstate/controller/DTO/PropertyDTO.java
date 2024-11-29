@@ -1,7 +1,5 @@
 package com.systemRealEstate.systemRealEstate.controller.DTO;
 
-import jakarta.persistence.Column;
-import jakarta.validation.constraints.NotBlank;
 
 import java.math.BigDecimal;
 import java.util.List;

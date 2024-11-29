@@ -2,6 +2,7 @@ package com.systemRealEstate.systemRealEstate.model;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -18,7 +19,7 @@ public class Property {
     @NotBlank(message = "La propiedad debe tener una descripcion")
     @Column(nullable = false,length = 255)
     private String description;
-    @NotBlank(message = "Ingrese el valor de la propiedad")
+    @NotNull(message = "Ingrese el valor de la propiedad")
     @Column(nullable = false)
     private BigDecimal price;
     private List<String> images;
@@ -72,7 +73,7 @@ public class Property {
         this.description = description;
     }
 
-    public @NotBlank(message = "Ingrese el valor de la propiedad") BigDecimal getPrice() {
+    public @NotNull(message = "Ingrese el valor de la propiedad") BigDecimal getPrice() {
         return price;
     }
 
