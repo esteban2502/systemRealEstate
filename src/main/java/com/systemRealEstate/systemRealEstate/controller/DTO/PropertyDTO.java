@@ -2,6 +2,8 @@ package com.systemRealEstate.systemRealEstate.controller.DTO;
 
 
 import com.systemRealEstate.systemRealEstate.model.Property;
+import jakarta.persistence.Column;
+import jakarta.validation.constraints.NotBlank;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -11,6 +13,10 @@ public class PropertyDTO {
     private String name;
     private String description;
     private Property.Type type;
+    private String maxGuest;
+    private String numRooms;
+    private String numBeds;
+    private String numBathrooms;
     private BigDecimal price;
     private List<String> images;
     private BigDecimal latitude;
@@ -20,15 +26,51 @@ public class PropertyDTO {
     public PropertyDTO() {
     }
 
-    public PropertyDTO(Long id, String name, String description, Property.Type type, BigDecimal price, List<String> images, BigDecimal latitude, BigDecimal length) {
+    public PropertyDTO(Long id, String name, String description, Property.Type type, String maxGuest, String numRooms, String numBeds, String numBathrooms, BigDecimal price, List<String> images, BigDecimal latitude, BigDecimal length) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.type = type;
+        this.maxGuest = maxGuest;
+        this.numRooms = numRooms;
+        this.numBeds = numBeds;
+        this.numBathrooms = numBathrooms;
         this.price = price;
         this.images = images;
         this.latitude = latitude;
         this.length = length;
+    }
+
+    public String getMaxGuest() {
+        return maxGuest;
+    }
+
+    public void setMaxGuest(String maxGuest) {
+        this.maxGuest = maxGuest;
+    }
+
+    public String getNumRooms() {
+        return numRooms;
+    }
+
+    public void setNumRooms(String numRooms) {
+        this.numRooms = numRooms;
+    }
+
+    public String getNumBeds() {
+        return numBeds;
+    }
+
+    public void setNumBeds(String numBeds) {
+        this.numBeds = numBeds;
+    }
+
+    public String getNumBathrooms() {
+        return numBathrooms;
+    }
+
+    public void setNumBathrooms(String numBathrooms) {
+        this.numBathrooms = numBathrooms;
     }
 
     public Property.Type getType() {

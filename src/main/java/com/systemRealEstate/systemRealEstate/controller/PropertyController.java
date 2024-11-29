@@ -27,8 +27,9 @@ public class PropertyController {
 
     List<PropertyDTO> listDTO  = listProperty.stream().map(p ->{
         PropertyDTO propertyDTO = new PropertyDTO(
-           p.getId(),p.getName(),p.getDescription(),p.getType(),p.getPrice(),
-           p.getImages(),p.getLatitude(),p.getLength()
+                p.getId(),p.getName(),p.getDescription(),p.getType(),p.getMaxGuest(),p.getNumRooms(),
+                p.getNumBeds(),p.getNumBathrooms(),p.getPrice(),
+                 p.getImages(),p.getLatitude(),p.getLength()
         );
         return propertyDTO;
 
@@ -46,6 +47,8 @@ public class PropertyController {
             PropertyDTO propertyDTO = new PropertyDTO(
                     property.get().getId(), property.get().getName(),
                     property.get().getDescription(),property.get().getType(),
+                    property.get().getMaxGuest(),property.get().getNumRooms(),
+                    property.get().getNumBeds(),property.get().getNumBathrooms(),
                     property.get().getPrice(), property.get().getImages(),
                     property.get().getLatitude(), property.get().getLength()
             );
@@ -62,8 +65,11 @@ public class PropertyController {
 
         Property property = new Property(
                 propertyDTO.getId(),propertyDTO.getName(),propertyDTO.getDescription(),
-                propertyDTO.getType() ,propertyDTO.getPrice(),propertyDTO.getImages(),
-                propertyDTO.getLatitude(), propertyDTO.getLength()
+                propertyDTO.getType(),propertyDTO.getMaxGuest(),
+                propertyDTO.getNumRooms(),propertyDTO.getNumBeds(),
+                propertyDTO.getNumBathrooms(),propertyDTO.getPrice(),
+                propertyDTO.getImages(),propertyDTO.getLatitude(),
+                propertyDTO.getLength()
         );
 
         service.updateProperty(id,property);
@@ -77,8 +83,9 @@ public class PropertyController {
     public ResponseEntity<?> addProperty(@RequestBody PropertyDTO propertyDTO){
         Property property = new Property(
                 propertyDTO.getId(), propertyDTO.getName(), propertyDTO.getDescription(),
-                propertyDTO.getType(), propertyDTO.getPrice(),propertyDTO.getImages(),
-                propertyDTO.getLatitude(), propertyDTO.getLength()
+                propertyDTO.getType(),propertyDTO.getMaxGuest(),propertyDTO.getNumRooms(),
+                propertyDTO.getNumBeds(),propertyDTO.getNumBathrooms(), propertyDTO.getPrice(),
+                propertyDTO.getImages(), propertyDTO.getLatitude(), propertyDTO.getLength()
         );
 
 

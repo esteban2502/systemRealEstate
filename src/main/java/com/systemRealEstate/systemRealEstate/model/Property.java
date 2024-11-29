@@ -20,8 +20,20 @@ public class Property {
     @Column(nullable = false,length = 255)
     private String description;
     @Enumerated(EnumType.STRING)
-    @NotBlank
+    @NotNull
     private Type type;
+    @NotBlank(message = "Ingrese el numero maximo de huespedes")
+    @Column(length = 4,nullable = false)
+    private String maxGuest;
+    @NotBlank(message = "Ingrese el numero de habitaciones")
+    @Column(length = 4,nullable = false)
+    private String numRooms;
+    @NotBlank(message = "Ingrese el numero de camas")
+    @Column(length = 4, nullable = false)
+    private String numBeds;
+    @NotBlank(message = "Ingrese el numero de baños")
+    @Column(length = 4,nullable = false)
+    private String numBathrooms;
     @NotNull(message = "Ingrese el valor de la propiedad")
     @Column(nullable = false)
     private BigDecimal price;
@@ -48,22 +60,59 @@ public class Property {
     public Property() {
     }
 
-    public Property(Long id, String name, String description, Type type, BigDecimal price, List<String> images, BigDecimal latitude, BigDecimal length) {
+    public Property(Long id, String name, String description, Type type, String maxGuest, String numRooms, String numBeds, String numBathrooms, BigDecimal price, List<String> images, BigDecimal latitude, BigDecimal length) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.type = type;
+        this.maxGuest = maxGuest;
+        this.numRooms = numRooms;
+        this.numBeds = numBeds;
+        this.numBathrooms = numBathrooms;
         this.price = price;
         this.images = images;
         this.latitude = latitude;
         this.length = length;
     }
 
-    public Type getType() {
+
+    public @NotBlank(message = "Ingrese el numero maximo de huespedes") String getMaxGuest() {
+        return maxGuest;
+    }
+
+    public void setMaxGuest(@NotBlank(message = "Ingrese el numero maximo de huespedes") String maxGuest) {
+        this.maxGuest = maxGuest;
+    }
+
+    public @NotBlank(message = "Ingrese el numero de habitaciones") String getNumRooms() {
+        return numRooms;
+    }
+
+    public void setNumRooms(@NotBlank(message = "Ingrese el numero de habitaciones") String numRooms) {
+        this.numRooms = numRooms;
+    }
+
+    public @NotBlank(message = "Ingrese el numero de camas") String getNumBeds() {
+        return numBeds;
+    }
+
+    public void setNumBeds(@NotBlank(message = "Ingrese el numero de camas") String numBeds) {
+        this.numBeds = numBeds;
+    }
+
+    public @NotBlank(message = "Ingrese el numero de baños") String getNumBathrooms() {
+        return numBathrooms;
+    }
+
+    public void setNumBathrooms(@NotBlank(message = "Ingrese el numero de baños") String numBathrooms) {
+        this.numBathrooms = numBathrooms;
+    }
+
+    public @NotNull Type getType() {
         return type;
     }
 
-    public void setType(Type type) {
+    public void setType(@NotNull Type type) {
         this.type = type;
     }
 
