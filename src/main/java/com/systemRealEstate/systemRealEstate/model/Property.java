@@ -19,6 +19,9 @@ public class Property {
     @NotBlank(message = "La propiedad debe tener una descripcion")
     @Column(nullable = false,length = 255)
     private String description;
+    @Enumerated(EnumType.STRING)
+    @NotBlank
+    private Type type;
     @NotNull(message = "Ingrese el valor de la propiedad")
     @Column(nullable = false)
     private BigDecimal price;
@@ -28,17 +31,40 @@ public class Property {
     @Column(nullable = false)
     private BigDecimal length;
 
+
+    public enum Type{
+        Apartamento,
+        Casa,
+        Estudio,
+        Habitacion,
+        Chalet,
+        Vivienda,
+        Mansión,
+        CasaArbol
+    }
+
+
+
     public Property() {
     }
 
-    public Property(Long id, String name, String description, BigDecimal price, List<String> images, BigDecimal latitude, BigDecimal length) {
+    public Property(Long id, String name, String description, Type type, BigDecimal price, List<String> images, BigDecimal latitude, BigDecimal length) {
         this.id = id;
         this.name = name;
         this.description = description;
+        this.type = type;
         this.price = price;
         this.images = images;
         this.latitude = latitude;
         this.length = length;
+    }
+
+    public Type getType() {
+        return type;
+    }
+
+    public void setType(Type type) {
+        this.type = type;
     }
 
     public List<String> getImages() {

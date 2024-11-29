@@ -1,6 +1,8 @@
 package com.systemRealEstate.systemRealEstate.controller.DTO;
 
 
+import com.systemRealEstate.systemRealEstate.model.Property;
+
 import java.math.BigDecimal;
 import java.util.List;
 
@@ -8,6 +10,7 @@ public class PropertyDTO {
     private Long id;
     private String name;
     private String description;
+    private Property.Type type;
     private BigDecimal price;
     private List<String> images;
     private BigDecimal latitude;
@@ -17,14 +20,23 @@ public class PropertyDTO {
     public PropertyDTO() {
     }
 
-    public PropertyDTO(Long id, String name, String description, BigDecimal price, List<String> images, BigDecimal latitude, BigDecimal length) {
+    public PropertyDTO(Long id, String name, String description, Property.Type type, BigDecimal price, List<String> images, BigDecimal latitude, BigDecimal length) {
         this.id = id;
         this.name = name;
         this.description = description;
+        this.type = type;
         this.price = price;
         this.images = images;
         this.latitude = latitude;
         this.length = length;
+    }
+
+    public Property.Type getType() {
+        return type;
+    }
+
+    public void setType(Property.Type type) {
+        this.type = type;
     }
 
     public Long getId() {

@@ -36,6 +36,7 @@ public class HandlerExceptionController {
     public ResponseEntity<?> errorCreate(Exception e){
         errorDTO error = new errorDTO("Ha ocurrido un error. No se pudo crear el registro",
                 " "+e,"400"
+                
         );
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
     }

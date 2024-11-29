@@ -27,7 +27,7 @@ public class PropertyController {
 
     List<PropertyDTO> listDTO  = listProperty.stream().map(p ->{
         PropertyDTO propertyDTO = new PropertyDTO(
-           p.getId(),p.getName(),p.getDescription(),p.getPrice(),
+           p.getId(),p.getName(),p.getDescription(),p.getType(),p.getPrice(),
            p.getImages(),p.getLatitude(),p.getLength()
         );
         return propertyDTO;
@@ -44,10 +44,10 @@ public class PropertyController {
         Optional<Property> property = service.getById(id);
         if(property.isPresent()){
             PropertyDTO propertyDTO = new PropertyDTO(
-              property.get().getId(), property.get().getName(),
-              property.get().getDescription(),property.get().getPrice(),
-              property.get().getImages(), property.get().getLatitude(),
-              property.get().getLength()
+                    property.get().getId(), property.get().getName(),
+                    property.get().getDescription(),property.get().getType(),
+                    property.get().getPrice(), property.get().getImages(),
+                    property.get().getLatitude(), property.get().getLength()
             );
 
             return ResponseEntity.ok(propertyDTO);
@@ -62,8 +62,8 @@ public class PropertyController {
 
         Property property = new Property(
                 propertyDTO.getId(),propertyDTO.getName(),propertyDTO.getDescription(),
-                propertyDTO.getPrice(),propertyDTO.getImages(),propertyDTO.getLatitude(),
-                propertyDTO.getLength()
+                propertyDTO.getType() ,propertyDTO.getPrice(),propertyDTO.getImages(),
+                propertyDTO.getLatitude(), propertyDTO.getLength()
         );
 
         service.updateProperty(id,property);
@@ -76,9 +76,9 @@ public class PropertyController {
     @PostMapping("/property")
     public ResponseEntity<?> addProperty(@RequestBody PropertyDTO propertyDTO){
         Property property = new Property(
-                propertyDTO.getId(), propertyDTO.getName(), propertyDTO.getName(),
-                propertyDTO.getPrice(),propertyDTO.getImages(),propertyDTO.getLatitude(),
-                propertyDTO.getLength()
+                propertyDTO.getId(), propertyDTO.getName(), propertyDTO.getDescription(),
+                propertyDTO.getType(), propertyDTO.getPrice(),propertyDTO.getImages(),
+                propertyDTO.getLatitude(), propertyDTO.getLength()
         );
 
 
