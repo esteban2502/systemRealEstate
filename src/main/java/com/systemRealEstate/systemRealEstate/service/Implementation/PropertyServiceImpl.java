@@ -1,9 +1,12 @@
 package com.systemRealEstate.systemRealEstate.service.Implementation;
 
+import com.systemRealEstate.systemRealEstate.exception.CanNotCreateException;
+import com.systemRealEstate.systemRealEstate.exception.NotFoundException;
 import com.systemRealEstate.systemRealEstate.model.Property;
 import com.systemRealEstate.systemRealEstate.repository.PropertyRepository;
 import com.systemRealEstate.systemRealEstate.service.IPropertyService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -33,12 +36,19 @@ public class PropertyServiceImpl implements IPropertyService {
     if(property.isPresent()){
             return property;
         }
-        return null;
+        throw new NotFoundException("No se encontro el Registro en la base de datos");
     }
 
     @Override
     public void addPropery(Property property) {
-        repository.save(property);
+        try{
+            repository.save(property);
+        }catch (Exception e){
+            throw new CanNotCreateException("Informacion sobre el error "+e);
+        }
+
+
+
     }
 
     @Override
@@ -49,6 +59,13 @@ public class PropertyServiceImpl implements IPropertyService {
 
     @Override
     public void deleteById(Long id) {
-        repository.deleteById(id);
+        if(!repository.existsById(id)){
+            throw new NotFoundException("No se encontro el registro en la base de datos");
+        }else{
+            repository.deleteById(id);
+        }
+
     }
+
+
 }

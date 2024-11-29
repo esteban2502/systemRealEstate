@@ -1,9 +1,11 @@
 package com.systemRealEstate.systemRealEstate.controller;
 
 import com.systemRealEstate.systemRealEstate.controller.DTO.PropertyDTO;
+import com.systemRealEstate.systemRealEstate.controller.DTO.errorDTO;
 import com.systemRealEstate.systemRealEstate.model.Property;
 import com.systemRealEstate.systemRealEstate.service.IPropertyService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -79,16 +81,20 @@ public class PropertyController {
                 propertyDTO.getLength()
         );
 
-        service.addPropery(property);
 
-        return ResponseEntity.created(URI.create("/api/property/"+property.getId())).build();
+            service.addPropery(property);
+
+            return ResponseEntity.created(URI.create("/api/property/"+property.getId())).build();
+
+
     }
 
     @DeleteMapping("property/{id}")
     public ResponseEntity<?> deleteById(@PathVariable Long id){
-        service.deleteById(id);
-        return ResponseEntity.ok().build();
 
-        
+            service.deleteById(id);
+            return ResponseEntity.ok().build();
+
+
     }
 }
