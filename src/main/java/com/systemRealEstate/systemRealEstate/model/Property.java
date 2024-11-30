@@ -1,11 +1,14 @@
 package com.systemRealEstate.systemRealEstate.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
 import java.math.BigDecimal;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name="properties")
@@ -22,18 +25,18 @@ public class Property {
     @Enumerated(EnumType.STRING)
     @NotNull
     private Type type;
-    @NotBlank(message = "Ingrese el numero maximo de huespedes")
+    @NotNull(message = "Ingrese el numero maximo de huespedes")
     @Column(length = 4,nullable = false)
-    private String maxGuest;
-    @NotBlank(message = "Ingrese el numero de habitaciones")
+    private Integer maxGuest;
+    @NotNull(message = "Ingrese el numero de habitaciones")
     @Column(length = 4,nullable = false)
-    private String numRooms;
-    @NotBlank(message = "Ingrese el numero de camas")
+    private Integer numRooms;
+    @NotNull(message = "Ingrese el numero de camas")
     @Column(length = 4, nullable = false)
-    private String numBeds;
-    @NotBlank(message = "Ingrese el numero de baños")
+    private Integer numBeds;
+    @NotNull(message = "Ingrese el numero de baños")
     @Column(length = 4,nullable = false)
-    private String numBathrooms;
+    private Integer numBathrooms;
     @NotNull(message = "Ingrese el valor de la propiedad")
     @Column(nullable = false)
     private BigDecimal price;
@@ -42,6 +45,11 @@ public class Property {
     private BigDecimal latitude;
     @Column(nullable = false)
     private BigDecimal length;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private UserEntity user;
+
 
 
     public enum Type{
@@ -60,7 +68,7 @@ public class Property {
     public Property() {
     }
 
-    public Property(Long id, String name, String description, Type type, String maxGuest, String numRooms, String numBeds, String numBathrooms, BigDecimal price, List<String> images, BigDecimal latitude, BigDecimal length) {
+    public Property(Long id, String name, String description, Type type, Integer maxGuest, Integer numRooms, Integer numBeds, Integer numBathrooms, BigDecimal price, List<String> images, BigDecimal latitude, BigDecimal length, UserEntity user) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -73,42 +81,50 @@ public class Property {
         this.images = images;
         this.latitude = latitude;
         this.length = length;
+        this.user = user;
     }
 
+    public UserEntity getUser() {
+        return user;
+    }
 
-    public @NotBlank(message = "Ingrese el numero maximo de huespedes") String getMaxGuest() {
+    public void setUser(UserEntity user) {
+        this.user = user;
+    }
+
+    public @NotNull(message = "Ingrese el numero maximo de huespedes") Integer getMaxGuest() {
         return maxGuest;
     }
 
-    public void setMaxGuest(@NotBlank(message = "Ingrese el numero maximo de huespedes") String maxGuest) {
+    public void setMaxGuest(@NotNull(message = "Ingrese el numero maximo de huespedes") Integer maxGuest) {
         this.maxGuest = maxGuest;
     }
 
-    public @NotBlank(message = "Ingrese el numero de habitaciones") String getNumRooms() {
+    public @NotNull(message = "Ingrese el numero de habitaciones") Integer getNumRooms() {
         return numRooms;
     }
 
-    public void setNumRooms(@NotBlank(message = "Ingrese el numero de habitaciones") String numRooms) {
+    public void setNumRooms(@NotNull(message = "Ingrese el numero de habitaciones") Integer numRooms) {
         this.numRooms = numRooms;
     }
 
-    public @NotBlank(message = "Ingrese el numero de camas") String getNumBeds() {
+    public @NotNull(message = "Ingrese el numero de camas") Integer getNumBeds() {
         return numBeds;
     }
 
-    public void setNumBeds(@NotBlank(message = "Ingrese el numero de camas") String numBeds) {
+    public void setNumBeds(@NotNull(message = "Ingrese el numero de camas") Integer numBeds) {
         this.numBeds = numBeds;
     }
 
-    public @NotBlank(message = "Ingrese el numero de baños") String getNumBathrooms() {
+    public @NotNull(message = "Ingrese el numero de baños") Integer getNumBathrooms() {
         return numBathrooms;
     }
 
-    public void setNumBathrooms(@NotBlank(message = "Ingrese el numero de baños") String numBathrooms) {
+    public void setNumBathrooms(@NotNull(message = "Ingrese el numero de baños") Integer numBathrooms) {
         this.numBathrooms = numBathrooms;
     }
 
-    public @NotNull Type getType() {
+    public Type getType() {
         return type;
     }
 

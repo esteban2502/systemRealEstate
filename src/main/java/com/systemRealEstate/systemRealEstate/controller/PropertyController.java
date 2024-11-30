@@ -29,7 +29,7 @@ public class PropertyController {
         PropertyDTO propertyDTO = new PropertyDTO(
                 p.getId(),p.getName(),p.getDescription(),p.getType(),p.getMaxGuest(),p.getNumRooms(),
                 p.getNumBeds(),p.getNumBathrooms(),p.getPrice(),
-                 p.getImages(),p.getLatitude(),p.getLength()
+                 p.getImages(),p.getLatitude(),p.getLength(),p.getUser()
         );
         return propertyDTO;
 
@@ -50,7 +50,8 @@ public class PropertyController {
                     property.get().getMaxGuest(),property.get().getNumRooms(),
                     property.get().getNumBeds(),property.get().getNumBathrooms(),
                     property.get().getPrice(), property.get().getImages(),
-                    property.get().getLatitude(), property.get().getLength()
+                    property.get().getLatitude(), property.get().getLength(),
+                    property.get().getUser()
             );
 
             return ResponseEntity.ok(propertyDTO);
@@ -69,7 +70,7 @@ public class PropertyController {
                 propertyDTO.getNumRooms(),propertyDTO.getNumBeds(),
                 propertyDTO.getNumBathrooms(),propertyDTO.getPrice(),
                 propertyDTO.getImages(),propertyDTO.getLatitude(),
-                propertyDTO.getLength()
+                propertyDTO.getLength(),propertyDTO.getUser()
         );
 
         service.updateProperty(id,property);
@@ -85,7 +86,8 @@ public class PropertyController {
                 propertyDTO.getId(), propertyDTO.getName(), propertyDTO.getDescription(),
                 propertyDTO.getType(),propertyDTO.getMaxGuest(),propertyDTO.getNumRooms(),
                 propertyDTO.getNumBeds(),propertyDTO.getNumBathrooms(), propertyDTO.getPrice(),
-                propertyDTO.getImages(), propertyDTO.getLatitude(), propertyDTO.getLength()
+                propertyDTO.getImages(), propertyDTO.getLatitude(), propertyDTO.getLength(),
+                propertyDTO.getUser()
         );
 
 

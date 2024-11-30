@@ -2,6 +2,7 @@ package com.systemRealEstate.systemRealEstate.controller.DTO;
 
 
 import com.systemRealEstate.systemRealEstate.model.Property;
+import com.systemRealEstate.systemRealEstate.model.UserEntity;
 import jakarta.persistence.Column;
 import jakarta.validation.constraints.NotBlank;
 
@@ -13,20 +14,21 @@ public class PropertyDTO {
     private String name;
     private String description;
     private Property.Type type;
-    private String maxGuest;
-    private String numRooms;
-    private String numBeds;
-    private String numBathrooms;
+    private Integer maxGuest;
+    private Integer numRooms;
+    private Integer numBeds;
+    private Integer  numBathrooms;
     private BigDecimal price;
     private List<String> images;
     private BigDecimal latitude;
     private BigDecimal length;
+    private UserEntity user;
 
 
     public PropertyDTO() {
     }
 
-    public PropertyDTO(Long id, String name, String description, Property.Type type, String maxGuest, String numRooms, String numBeds, String numBathrooms, BigDecimal price, List<String> images, BigDecimal latitude, BigDecimal length) {
+    public PropertyDTO(Long id, String name, String description, Property.Type type, Integer maxGuest, Integer numRooms, Integer numBeds, Integer numBathrooms, BigDecimal price, List<String> images, BigDecimal latitude, BigDecimal length, UserEntity user) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -39,37 +41,46 @@ public class PropertyDTO {
         this.images = images;
         this.latitude = latitude;
         this.length = length;
+        this.user = user;
     }
 
-    public String getMaxGuest() {
+    public UserEntity getUser() {
+        return user;
+    }
+
+    public void setUser(UserEntity user) {
+        this.user = user;
+    }
+
+    public Integer getMaxGuest() {
         return maxGuest;
     }
 
-    public void setMaxGuest(String maxGuest) {
+    public void setMaxGuest(Integer maxGuest) {
         this.maxGuest = maxGuest;
     }
 
-    public String getNumRooms() {
+    public Integer getNumRooms() {
         return numRooms;
     }
 
-    public void setNumRooms(String numRooms) {
+    public void setNumRooms(Integer numRooms) {
         this.numRooms = numRooms;
     }
 
-    public String getNumBeds() {
+    public Integer getNumBeds() {
         return numBeds;
     }
 
-    public void setNumBeds(String numBeds) {
+    public void setNumBeds(Integer numBeds) {
         this.numBeds = numBeds;
     }
 
-    public String getNumBathrooms() {
+    public Integer getNumBathrooms() {
         return numBathrooms;
     }
 
-    public void setNumBathrooms(String numBathrooms) {
+    public void setNumBathrooms(Integer numBathrooms) {
         this.numBathrooms = numBathrooms;
     }
 
