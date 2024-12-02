@@ -8,6 +8,7 @@ import com.systemRealEstate.systemRealEstate.service.IPropertyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,15 +37,16 @@ public class PropertyServiceImpl implements IPropertyService {
     if(property.isPresent()){
             return property;
         }
-        throw new NotFoundException("No se encontro el Registro en la base de datos");
+        throw new NotFoundException("No se encontro la propiedad en la base de datos");
     }
 
     @Override
+    @Transactional
     public void addPropery(Property property) {
         try{
             repository.save(property);
         }catch (Exception e){
-            throw new CanNotCreateException("Informacion sobre el error "+e);
+            throw new CanNotCreateException("No se puede guardar la propiedad "+e.getMessage());
         }
 
 
@@ -52,15 +54,17 @@ public class PropertyServiceImpl implements IPropertyService {
     }
 
     @Override
+    @Transactional
     public void updateProperty(Long id, Property updatedProperty) {
         updatedProperty.setId(id);
         repository.save(updatedProperty);
     }
 
     @Override
+    @Transactional
     public void deleteById(Long id) {
         if(!repository.existsById(id)){
-            throw new NotFoundException("No se encontro el registro en la base de datos");
+            throw new NotFoundException("No se encontro la propiedad con el id "+id+" en la base de datos");
         }else{
             repository.deleteById(id);
         }
