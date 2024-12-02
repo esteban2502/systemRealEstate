@@ -7,6 +7,7 @@ import com.systemRealEstate.systemRealEstate.repository.ReservationRepository;
 import com.systemRealEstate.systemRealEstate.service.IReservationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,6 +41,7 @@ public class ReservationServiceImpl  implements IReservationService {
     }
 
     @Override
+    @Transactional
     public void addReservation(Reservation reservation) {
         try{
             repository.save(reservation);
@@ -49,6 +51,7 @@ public class ReservationServiceImpl  implements IReservationService {
     }
 
     @Override
+    @Transactional
     public void updateReservation(Long id, Reservation updatedReservation) {
         if (!repository.existsById(id)){
             throw new NotFoundException("No se encontro la reserva que se quiere actualizar");
@@ -59,6 +62,7 @@ public class ReservationServiceImpl  implements IReservationService {
     }
 
     @Override
+    @Transactional
     public void deleteById(Long id) {
         if(!repository.existsById(id)){
             throw new NotFoundException("La reserva no se encontro en la base de datos");

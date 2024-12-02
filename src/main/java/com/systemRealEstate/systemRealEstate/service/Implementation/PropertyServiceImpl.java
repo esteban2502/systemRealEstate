@@ -42,7 +42,7 @@ public class PropertyServiceImpl implements IPropertyService {
 
     @Override
     @Transactional
-    public void addPropery(Property property) {
+    public void addProperty(Property property) {
         try{
             repository.save(property);
         }catch (Exception e){

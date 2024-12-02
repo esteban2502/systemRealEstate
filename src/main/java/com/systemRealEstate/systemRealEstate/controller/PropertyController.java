@@ -91,7 +91,7 @@ public class PropertyController {
         );
 
 
-            service.addPropery(property);
+            service.addProperty(property);
 
             return ResponseEntity.created(URI.create("/api/property/"+property.getId())).build();
 

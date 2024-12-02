@@ -12,7 +12,7 @@ public interface IPropertyService {
 
  List<Property> getAll();
  Optional<Property> getById(Long id);
- void addPropery(Property property);
+ void addProperty(Property property);
  void updateProperty(Long id, Property updatedProperty);
  void deleteById(Long id);
 
