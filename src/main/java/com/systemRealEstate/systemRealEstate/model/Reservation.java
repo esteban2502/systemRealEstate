@@ -3,7 +3,6 @@ package com.systemRealEstate.systemRealEstate.model;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 
@@ -20,7 +19,7 @@ public class Reservation {
     private Property property;
     @NotEmpty
     @ManyToOne
-    @JoinColumn
+    @JoinColumn(name ="user_id")
     private UserEntity user;
     @NotNull
     @Column(length = 10)

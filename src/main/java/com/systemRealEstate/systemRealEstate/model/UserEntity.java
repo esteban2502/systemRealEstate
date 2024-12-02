@@ -22,7 +22,7 @@ public class UserEntity {
     @OneToMany(mappedBy = "user")
     Set<Property> properties;
 
-    @OneToMany
+    @OneToMany(mappedBy = "user")
     private List<Reservation> reservations;
 
     @Column(name = "is_enabled")
