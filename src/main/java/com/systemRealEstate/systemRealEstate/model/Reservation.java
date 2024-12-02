@@ -2,6 +2,7 @@ package com.systemRealEstate.systemRealEstate.model;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
@@ -14,12 +15,18 @@ public class Reservation {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @NotEmpty
+    @ManyToOne
+    @JoinColumn
     private Property property;
     @NotEmpty
+    @ManyToOne
+    @JoinColumn
     private UserEntity user;
-    @NotEmpty
+    @NotNull
+    @Column(length = 10)
     private Date startDay;
-    @NotEmpty
+    @NotNull
+    @Column(length = 10)
     private Date endDay;
 
 
@@ -59,19 +66,19 @@ public class Reservation {
         this.user = user;
     }
 
-    public @NotEmpty Date getStartDay() {
+    public @NotNull Date getStartDay() {
         return startDay;
     }
 
-    public void setStartDay(@NotEmpty Date startDay) {
+    public void setStartDay(@NotNull Date startDay) {
         this.startDay = startDay;
     }
 
-    public @NotEmpty Date getEndDay() {
+    public @NotNull Date getEndDay() {
         return endDay;
     }
 
-    public void setEndDay(@NotEmpty Date endDay) {
+    public void setEndDay(@NotNull Date endDay) {
         this.endDay = endDay;
     }
 }
