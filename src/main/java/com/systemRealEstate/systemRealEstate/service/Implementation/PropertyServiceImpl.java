@@ -37,7 +37,7 @@ public class PropertyServiceImpl implements IPropertyService {
     if(property.isPresent()){
             return property;
         }
-        throw new NotFoundException("No se encontro la propiedad en la base de datos");
+        throw new NotFoundException("No se encontro la propiedad con el id "+id+" en la base de datos");
     }
 
     @Override
@@ -56,8 +56,12 @@ public class PropertyServiceImpl implements IPropertyService {
     @Override
     @Transactional
     public void updateProperty(Long id, Property updatedProperty) {
-        updatedProperty.setId(id);
-        repository.save(updatedProperty);
+        if(!repository.existsById(id)){
+            throw new NotFoundException("No se encuentra la propiedad con el id "+id+" que se quiere actualizar");
+        }else{
+            updatedProperty.setId(id);
+            repository.save(updatedProperty);
+        }
     }
 
     @Override
