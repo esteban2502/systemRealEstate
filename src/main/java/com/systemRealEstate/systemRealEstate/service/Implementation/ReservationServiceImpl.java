@@ -67,7 +67,7 @@ public class ReservationServiceImpl  implements IReservationService {
         if(!repository.existsById(id)){
             throw new NotFoundException("La reserva no se encontro en la base de datos");
         }else{
-            deleteById(id);
+            repository.deleteById(id);
         }
     }
 }

@@ -80,6 +80,11 @@ public class ReservationController {
         return ResponseEntity.ok().build();
     }
 
+    @DeleteMapping("/reservation/{id}")
+    public ResponseEntity<?> deleteById(@PathVariable Long id){
+        service.deleteById(id);
+        return ResponseEntity.ok().build();
+    }
 
 
 }
