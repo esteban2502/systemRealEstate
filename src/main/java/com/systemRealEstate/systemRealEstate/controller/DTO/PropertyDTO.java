@@ -22,13 +22,13 @@ public class PropertyDTO {
     private List<String> images;
     private BigDecimal latitude;
     private BigDecimal length;
-    private UserEntity user;
+    private UserEntity host;
 
 
     public PropertyDTO() {
     }
 
-    public PropertyDTO(Long id, String name, String description, Property.Type type, Integer maxGuest, Integer numRooms, Integer numBeds, Integer numBathrooms, BigDecimal price, List<String> images, BigDecimal latitude, BigDecimal length, UserEntity user) {
+    public PropertyDTO(Long id, String name, String description, Property.Type type, Integer maxGuest, Integer numRooms, Integer numBeds, Integer numBathrooms, BigDecimal price, List<String> images, BigDecimal latitude, BigDecimal length, UserEntity host) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -41,15 +41,39 @@ public class PropertyDTO {
         this.images = images;
         this.latitude = latitude;
         this.length = length;
-        this.user = user;
+        this.host = host;
     }
 
-    public UserEntity getUser() {
-        return user;
+    public Long getId() {
+        return id;
     }
 
-    public void setUser(UserEntity user) {
-        this.user = user;
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public Property.Type getType() {
+        return type;
+    }
+
+    public void setType(Property.Type type) {
+        this.type = type;
     }
 
     public Integer getMaxGuest() {
@@ -84,38 +108,6 @@ public class PropertyDTO {
         this.numBathrooms = numBathrooms;
     }
 
-    public Property.Type getType() {
-        return type;
-    }
-
-    public void setType(Property.Type type) {
-        this.type = type;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
     public BigDecimal getPrice() {
         return price;
     }
@@ -146,5 +138,13 @@ public class PropertyDTO {
 
     public void setLength(BigDecimal length) {
         this.length = length;
+    }
+
+    public UserEntity getHost() {
+        return host;
+    }
+
+    public void setHost(UserEntity host) {
+        this.host = host;
     }
 }

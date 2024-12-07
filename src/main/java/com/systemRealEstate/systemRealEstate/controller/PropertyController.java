@@ -70,7 +70,7 @@ public class PropertyController {
                 propertyDTO.getNumRooms(),propertyDTO.getNumBeds(),
                 propertyDTO.getNumBathrooms(),propertyDTO.getPrice(),
                 propertyDTO.getImages(),propertyDTO.getLatitude(),
-                propertyDTO.getLength(),propertyDTO.getUser()
+                propertyDTO.getLength(),propertyDTO.getHost()
         );
 
         service.updateProperty(id,property);
@@ -87,7 +87,7 @@ public class PropertyController {
                 propertyDTO.getType(),propertyDTO.getMaxGuest(),propertyDTO.getNumRooms(),
                 propertyDTO.getNumBeds(),propertyDTO.getNumBathrooms(), propertyDTO.getPrice(),
                 propertyDTO.getImages(), propertyDTO.getLatitude(), propertyDTO.getLength(),
-                propertyDTO.getUser()
+                propertyDTO.getHost()
         );
 
 

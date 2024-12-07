@@ -70,4 +70,14 @@ public class ReservationServiceImpl  implements IReservationService {
             repository.deleteById(id);
         }
     }
+
+    @Override
+    public List<Reservation> getReservationsByIdProperty(Long idProperty) {
+        Iterable<Reservation> reservations = repository.getReservationsByIdProperty(idProperty);
+        List<Reservation> reservationList = new ArrayList<>();
+        for(Reservation aux : reservations){
+            reservationList.add(aux);
+        }
+        return reservationList;
+    }
 }

@@ -86,5 +86,17 @@ public class ReservationController {
         return ResponseEntity.ok().build();
     }
 
+    @GetMapping("/reservations/property/{idProperty}")
+    public ResponseEntity<?> getReservationsByIdProperty(@PathVariable Long idProperty){
+        List<ReservationDTO> listReservationDTO =
+                service.getReservationsByIdProperty(idProperty).stream().
+                        map(r -> new ReservationDTO(
+                                r.getId(),r.getProperty(),r.getUser(),
+                                r.getStartDay(),r.getEndDay()
+                        )).collect(Collectors.toList());
+
+        return ResponseEntity.ok(listReservationDTO);
+    }
+
 
 }
