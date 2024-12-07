@@ -13,11 +13,11 @@ public class Reservation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @NotEmpty
+    @NotNull
     @ManyToOne
     @JoinColumn
     private Property property;
-    @NotEmpty
+    //@NotNull
     @ManyToOne
     @JoinColumn(name ="user_id")
     private UserEntity user;
@@ -40,7 +40,6 @@ public class Reservation {
         this.endDay = endDay;
     }
 
-
     public Long getId() {
         return id;
     }
@@ -49,19 +48,19 @@ public class Reservation {
         this.id = id;
     }
 
-    public @NotEmpty Property getProperty() {
+    public @NotNull Property getProperty() {
         return property;
     }
 
-    public void setProperty(@NotEmpty Property property) {
+    public void setProperty(@NotNull Property property) {
         this.property = property;
     }
 
-    public @NotEmpty UserEntity getUser() {
+    public UserEntity getUser() {
         return user;
     }
 
-    public void setUser(@NotEmpty UserEntity user) {
+    public void setUser(UserEntity user) {
         this.user = user;
     }
 

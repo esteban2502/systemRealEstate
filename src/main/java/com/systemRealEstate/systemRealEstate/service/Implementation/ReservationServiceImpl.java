@@ -57,7 +57,7 @@ public class ReservationServiceImpl  implements IReservationService {
             throw new NotFoundException("No se encontro la reserva que se quiere actualizar");
         }else{
             updatedReservation.setId(id);
-            repository.deleteById(id);
+            repository.save(updatedReservation);
         }
     }
 
