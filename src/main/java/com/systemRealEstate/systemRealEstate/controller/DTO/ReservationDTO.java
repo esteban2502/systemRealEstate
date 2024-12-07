@@ -4,20 +4,21 @@ import com.systemRealEstate.systemRealEstate.model.Property;
 import com.systemRealEstate.systemRealEstate.model.UserEntity;
 
 
+import java.time.LocalDate;
 import java.util.Date;
 
 public class ReservationDTO {
     private Long id;
     private Property property;
     private UserEntity user;
-    private Date startDay;
-    private Date endDay;
+    private LocalDate startDay;
+    private LocalDate endDay;
 
 
     public ReservationDTO() {
     }
 
-    public ReservationDTO(Long id, Property property, UserEntity user, Date startDay, Date endDay) {
+    public ReservationDTO(Long id, Property property, UserEntity user, LocalDate startDay, LocalDate endDay) {
         this.id = id;
         this.property = property;
         this.user = user;
@@ -49,19 +50,19 @@ public class ReservationDTO {
         this.user = user;
     }
 
-    public Date getStartDay() {
+    public LocalDate getStartDay() {
         return startDay;
     }
 
-    public void setStartDay(Date startDay) {
+    public void setStartDay(LocalDate startDay) {
         this.startDay = startDay;
     }
 
-    public Date getEndDay() {
+    public LocalDate getEndDay() {
         return endDay;
     }
 
-    public void setEndDay(Date endDay) {
+    public void setEndDay(LocalDate endDay) {
         this.endDay = endDay;
     }
 }

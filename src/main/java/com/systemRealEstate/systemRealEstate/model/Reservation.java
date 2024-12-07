@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
@@ -23,22 +24,23 @@ public class Reservation {
     private UserEntity user;
     @NotNull
     @Column(length = 10)
-    private Date startDay;
+    private LocalDate startDay;
     @NotNull
     @Column(length = 10)
-    private Date endDay;
+    private LocalDate endDay;
 
 
     public Reservation() {
     }
 
-    public Reservation(Long id, Property property, UserEntity user, Date startDay, Date endDay) {
+    public Reservation(Long id, Property property, UserEntity user, LocalDate startDay, LocalDate endDay) {
         this.id = id;
         this.property = property;
         this.user = user;
         this.startDay = startDay;
         this.endDay = endDay;
     }
+
 
     public Long getId() {
         return id;
@@ -64,19 +66,19 @@ public class Reservation {
         this.user = user;
     }
 
-    public @NotNull Date getStartDay() {
+    public @NotNull LocalDate getStartDay() {
         return startDay;
     }
 
-    public void setStartDay(@NotNull Date startDay) {
+    public void setStartDay(@NotNull LocalDate startDay) {
         this.startDay = startDay;
     }
 
-    public @NotNull Date getEndDay() {
+    public @NotNull LocalDate getEndDay() {
         return endDay;
     }
 
-    public void setEndDay(@NotNull Date endDay) {
+    public void setEndDay(@NotNull LocalDate endDay) {
         this.endDay = endDay;
     }
 }
